@@ -1,8 +1,8 @@
 name: flutter_txugcupload
-description: A new flutter plugin project.
+description: 适用于 Flutter 的腾讯云点播上传 SDK
 version: 0.0.1
-author:
-homepage:
+author: LiJianying <lijy91@foxmail.com>
+homepage: https://github.com/leanflutter/flutter_txugcupload
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

@@ -31,3 +31,11 @@ android {
         disable 'InvalidPackage'
     }
 }
+
+dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okio:okio:1.14.0'
+    implementation ('com.tencent.qcloud:cosxml:5.5.3') {
+        exclude group: 'com.tencent.qcloud', module: 'mtaUtils' // 关闭 mta 上报功能
+    }
+}
