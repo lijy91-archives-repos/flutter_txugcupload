@@ -24,12 +24,12 @@ A new flutter plugin project.
   s.vendored_libraries = [
     "Classes/upload/COSSDK/libmtasdk.a",
   ]
-  s.ios.framework = ['CoreTelephony', 'SystemConfiguration', 'SystemConfiguration']
+  s.ios.framework = ['CoreTelephony', 'SystemConfiguration']
   s.ios.library = 'c++'
 
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '9.0'
 
-  # # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
-  # s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
+  # # Flutter.framework does not contain a i386 slice.
+  # s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.static_framework = true
 end

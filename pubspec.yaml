@@ -1,12 +1,12 @@
 name: flutter_txugcupload
 description: 适用于 Flutter 的腾讯云点播上传 SDK
-version: 0.0.1
+version: 0.0.2
 author: LiJianying <lijy91@foxmail.com>
 homepage: https://github.com/leanflutter/flutter_txugcupload
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.10.0"
+  flutter: ">=1.20.0 <2.0.0"
 
 dependencies:
   flutter:
@@ -31,8 +31,6 @@ flutter:
         package: org.leanflutter.plugins.flutter_txugcupload
         pluginClass: FlutterTxugcuploadPlugin
       ios:
-        pluginClass: FlutterTxugcuploadPlugin
-      macos:
         pluginClass: FlutterTxugcuploadPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
