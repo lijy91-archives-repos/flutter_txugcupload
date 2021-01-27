@@ -151,9 +151,9 @@
                 @"result": @{
                         @"retCode": @(videoResult.retCode),
                         @"descMsg": videoResult.descMsg != nil ? videoResult.descMsg : @"",
-                        @"videoId": videoResult.videoId,
-                        @"videoURL": videoResult.videoURL,
-                        @"coverURL": videoResult.coverURL,
+                        @"videoId": videoResult.videoId != nil ? videoResult.videoId : @"",
+                        @"videoURL": videoResult.videoURL != nil ? videoResult.videoURL : @"",
+                        @"coverURL": videoResult.coverURL != nil ? videoResult.coverURL : @"",
                 }
         }
     };
