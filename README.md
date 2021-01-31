@@ -27,7 +27,7 @@
 
 ```yaml
 dependencies:
-  flutter_txugcupload: ^0.0.2
+  flutter_txugcupload: ^0.0.3
 ```
 
 您可以从命令行安装软件包：
