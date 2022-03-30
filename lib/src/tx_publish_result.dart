@@ -1,9 +1,9 @@
 class TXPublishResult {
-  int retCode; // 错误码
-  String descMsg; // 错误描述信息
-  String videoId; // 视频文件Id
-  String videoURL; // 视频播放地址
-  String coverURL; // 封面存储地址
+  int? retCode; // 错误码
+  String? descMsg; // 错误描述信息
+  String? videoId; // 视频文件Id
+  String? videoURL; // 视频播放地址
+  String? coverURL; // 封面存储地址
 
   TXPublishResult({
     this.retCode,
@@ -14,8 +14,6 @@ class TXPublishResult {
   });
 
   factory TXPublishResult.fromJson(Map<String, dynamic> json) {
-    if (json == null) return null;
-
     return TXPublishResult(
       retCode: json['retCode'],
       descMsg: json['descMsg'],

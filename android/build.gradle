@@ -4,25 +4,30 @@ version '1.0'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:4.1.0'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         minSdkVersion 16
@@ -33,9 +38,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.squareup.okio:okio:1.14.0'
-    implementation ('com.tencent.qcloud:cosxml:5.5.3') {
-        exclude group: 'com.tencent.qcloud', module: 'mtaUtils' // 关闭 mta 上报功能
-    }
+    implementation 'com.qcloud.cos:cos-android-nobeacon:5.8.3'
+    implementation 'com.qcloud.cos:quic:1.5.37'
 }

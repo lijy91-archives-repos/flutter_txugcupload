@@ -14,10 +14,10 @@ class TXUGCPublish {
   final MethodChannel _methodChannel = const MethodChannel(_kMethodChannelName);
   final EventChannel _eventChannel = const EventChannel(_kEventChannelName);
 
-  TXVideoPublishListener _videoPublishListener;
-  TXMediaPublishListener _mediaPublishListener;
+  TXVideoPublishListener? _videoPublishListener;
+  TXMediaPublishListener? _mediaPublishListener;
 
-  String customKey;
+  String? customKey;
 
   TXUGCPublish({this.customKey}) {
     _eventChannel.receiveBroadcastStream().listen(_onEvent);
@@ -43,14 +43,14 @@ class TXUGCPublish {
 
     switch (method) {
       case 'onPublishProgress':
-        _videoPublishListener.onPublishProgress(
+        _videoPublishListener?.onPublishProgress(
           data['uploadBytes'],
           data['totalBytes'],
         );
         break;
       case 'onPublishComplete':
         var resultJson = Map<String, dynamic>.from(data['result']);
-        _videoPublishListener.onPublishComplete(
+        _videoPublishListener?.onPublishComplete(
           TXPublishResult.fromJson(resultJson),
         );
         break;
@@ -62,14 +62,14 @@ class TXUGCPublish {
 
     switch (method) {
       case 'onMediaPublishProgress':
-        _mediaPublishListener.onMediaPublishProgress(
+        _mediaPublishListener?.onMediaPublishProgress(
           data['uploadBytes'],
           data['totalBytes'],
         );
         break;
       case 'onMediaPublishComplete':
         var mediaResultJson = Map<String, dynamic>.from(data['mediaResult']);
-        _mediaPublishListener.onMediaPublishComplete(
+        _mediaPublishListener?.onMediaPublishComplete(
           TXMediaPublishResult.fromJson(mediaResultJson),
         );
         break;

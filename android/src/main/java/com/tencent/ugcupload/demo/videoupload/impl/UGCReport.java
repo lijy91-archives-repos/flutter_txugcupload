@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,30 +28,30 @@ import okhttp3.Response;
 public class UGCReport {
 
     public static class ReportInfo {
-        public int reqType = 0;
-        public int errCode = 0;
-        public int vodErrCode = 0;
-        public String cosErrCode = "";
-        public String errMsg = "";
-        public long reqTime = 0;
-        public long reqTimeCost = 0;
-        public long fileSize = 0;
-        public String fileType = "";
-        public String fileName = "";
-        public String fileId = "";
-        public int appId = 0;
-        public String reqServerIp = "";
-        public int useHttpDNS = 0;
-        public String reportId = "";
-        public String reqKey = "";
-        public String vodSessionKey = "";
-        public String cosRegion = "";
-        public int useCosAcc = 0;
-        public long tcpConnTimeCost = 0;
-        public long recvRespTimeCost = 0;
-        public int retryCount = 0;
-        public boolean reporting = false;   // 正在上报
-        public String requestId = "";
+        public int     reqType          = 0;
+        public int     errCode          = 0;
+        public int     vodErrCode       = 0;
+        public String  cosErrCode       = "";
+        public String  errMsg           = "";
+        public long    reqTime          = 0;
+        public long    reqTimeCost      = 0;
+        public long    fileSize         = 0;
+        public String  fileType         = "";
+        public String  fileName         = "";
+        public String  fileId           = "";
+        public int     appId            = 0;
+        public String  reqServerIp      = "";
+        public int     useHttpDNS       = 0;
+        public String  reportId         = "";
+        public String  reqKey           = "";
+        public String  vodSessionKey    = "";
+        public String  cosRegion        = "";
+        public int     useCosAcc        = 0;
+        public long    tcpConnTimeCost  = 0;
+        public long    recvRespTimeCost = 0;
+        public int     retryCount       = 0;
+        public boolean reporting        = false;   // 正在上报
+        public String  requestId        = "";
 
         public ReportInfo() {
         }
@@ -111,19 +112,21 @@ public class UGCReport {
                     ", recvRespTimeCost=" + recvRespTimeCost +
                     '}';
         }
-    };
+    }
 
-    private static final String TAG = "TVC-UGCReport";
-    private static final int MAX_CACHES = 100;//最多缓存的上报记录条数
+    ;
+
+    private static final String TAG        = "TVC-UGCReport";
+    private static final int    MAX_CACHES = 100;//最多缓存的上报记录条数
 
     private static UGCReport ourInstance;
 
-    private Context context;
-    private OkHttpClient okHttpClient;
+    private Context          context;
+    private OkHttpClient     okHttpClient;
     private List<ReportInfo> reportCaches = new ArrayList<ReportInfo>();
 
     private TimerTask reportTask = null;
-    private Timer mTimer;
+    private Timer     mTimer;
 
 
     public static UGCReport getInstance(Context context) {
@@ -204,7 +207,7 @@ public class UGCReport {
             jsonObject.put("reqServerIp", info.reqServerIp);
             jsonObject.put("useHttpDNS", info.useHttpDNS);
             jsonObject.put("platform", 2000); // 1000 - iOS, 2000 - Android
-            jsonObject.put("device", Build.MANUFACTURER + Build.MODEL);
+            jsonObject.put("device", TXCBuild.Manufacturer() + TXCBuild.Model());
             jsonObject.put("osType", String.valueOf(Build.VERSION.SDK_INT));
             jsonObject.put("netType", TVCUtils.getNetWorkType(context));
             jsonObject.put("reqTime", info.reqTime);

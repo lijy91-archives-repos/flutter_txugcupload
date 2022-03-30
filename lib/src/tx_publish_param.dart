@@ -1,12 +1,12 @@
 import 'package:flutter_txugcupload/flutter_txugcupload.dart';
 
 class TXPublishParam {
-  String signature; // signature
-  String videoPath; // 视频地址
-  String coverPath; // 封面
-  bool enableResume = true; // 是否启动断点续传，默认开启
-  bool enableHttps = false; // 上传是否使用https。默认关闭，走http
-  String fileName; // 视频名称
+  String? signature; // signature
+  String? videoPath; // 视频地址
+  String? coverPath; // 封面
+  bool? enableResume = true; // 是否启动断点续传，默认开启
+  bool? enableHttps = false; // 上传是否使用https。默认关闭，走http
+  String? fileName; // 视频名称
 
   TXPublishParam({
     this.signature,

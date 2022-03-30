@@ -21,7 +21,7 @@
 #define kMessage        @"message"
 #define kData           @"data"
 
-#define TVCVersion @"1.1.2.0"
+#define TVCVersion @"1.1.4.0"
 
 #pragma mark - COS config
 //字段废弃，作为InitUploadUGC的占位字段
@@ -122,6 +122,8 @@
 @property(nonatomic,assign) BOOL isShouldRetry;     // 由于临时签名过期导致的上传失败，重试
 
 @property(nonatomic,assign) int vodCmdRequestCount;   // vod信令请求次数
+
+@property(nonatomic,copy) NSString* mainVodServerErrMsg;   // //主域名请求失败的msg，用于备份域名都请求失败后，带回上报。
 
 @property(nonatomic,strong) NSData * resumeData;    // cos分片上传resumeData
 

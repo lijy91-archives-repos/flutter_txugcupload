@@ -12,10 +12,9 @@ import okhttp3.Protocol;
  * 利用OKHTTP Event事件，用来统计TCP建立链接耗时 以及 收到收个回包的耗时
  */
 public class TXOkHTTPEventListener extends EventListener {
+
     private long startTime;
-
     private long connectFinishTime;
-
     private long startRecvRspHeaderTime;
 
 
@@ -40,7 +39,7 @@ public class TXOkHTTPEventListener extends EventListener {
     }
 
     @Override
-    public void connectFailed(Call call, InetSocketAddress inetSocketAddress, Proxy proxy, Protocol protocol,IOException ioe) {
+    public void connectFailed(Call call, InetSocketAddress inetSocketAddress, Proxy proxy, Protocol protocol, IOException ioe) {
         super.connectFailed(call, inetSocketAddress, proxy, protocol, ioe);
         connectFinishTime = System.currentTimeMillis();
     }

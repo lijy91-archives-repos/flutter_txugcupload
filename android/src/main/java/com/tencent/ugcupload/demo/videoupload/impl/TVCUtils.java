@@ -21,8 +21,8 @@ import java.security.MessageDigest;
 import java.util.UUID;
 
 public class TVCUtils {
-    private static final String TAG = "TVCUtils";
-    private static String g_simulate_idfa = "";
+    private static final String TAG             = "TVCUtils";
+    private static       String g_simulate_idfa = "";
 
     private static String byteArrayToHexString(byte[] data) {
         char[] out = new char[data.length << 1];
@@ -37,15 +37,14 @@ public class TVCUtils {
     private static final char[] DIGITS_LOWER =
             {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    public static String string2Md5(String value)
-    {
+    public static String string2Md5(String value) {
         String MD5 = "";
 
         if (null == value) return MD5;
 
         try {
             MessageDigest mD = MessageDigest.getInstance("MD5");
-            MD5 = byteArrayToHexString( mD.digest(value.getBytes("UTF-8")));
+            MD5 = byteArrayToHexString(mD.digest(value.getBytes("UTF-8")));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,51 +54,8 @@ public class TVCUtils {
         return MD5;
     }
 
-    //IMEI：
-    public static String doRead(Context context) {
-        String imei = "";
-        try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            if (tm != null)  imei = tm.getDeviceId();
-            if (imei == null) imei = "";
-        } catch (Exception e) {
-        }
-        return string2Md5(imei);
-    }
-
-    //Android_ID
-    public static String getOrigAndroidID(Context context) {
-
-        String aid = "";
-        try {
-            aid = Settings.Secure.getString(context.getContentResolver(), "android_id");
-        } catch (Throwable e) {
-
-        }
-
-        return string2Md5(aid);
-    }
-
-    //MAC
-    public static String getOrigMacAddr(Context context) {
-        String macAddress = "";
-        try {
-            WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wInfo = wm != null ? wm.getConnectionInfo() : null;
-            macAddress = wInfo != null ? wInfo.getMacAddress() : null;
-            if (macAddress != null) {
-                macAddress = string2Md5(macAddress.replaceAll(":", "").toUpperCase());
-            }
-        } catch (Exception e) {
-        }
-        if (macAddress == null) {
-            macAddress = "";
-        }
-        return macAddress;
-    }
-
     // SimulateIDFA
-    public  static String getSimulateIDFA(Context context) {
+    public static String getSimulateIDFA(Context context) {
         if (g_simulate_idfa != null && g_simulate_idfa.length() > 0) {
             return g_simulate_idfa;
         }
@@ -147,10 +103,10 @@ public class TVCUtils {
             long tickTimeMS = SystemClock.elapsedRealtime();
             String packetName = getPackageName(context);
             for (int i = 5; i >= 0; --i) {
-                idfa += String.format("%02x", (byte)((utcTimeMS >> (i*8)) & 0xff));
+                idfa += String.format("%02x", (byte) ((utcTimeMS >> (i * 8)) & 0xff));
             }
             for (int i = 3; i >= 0; --i) {
-                idfa += String.format("%02x", (byte)((tickTimeMS >> (i*8)) & 0xff));
+                idfa += String.format("%02x", (byte) ((tickTimeMS >> (i * 8)) & 0xff));
             }
             idfa += string2Md5(packetName + UUID.randomUUID().toString());
         }
@@ -189,17 +145,15 @@ public class TVCUtils {
     }
 
     /*
-    * 获取网络类型
-    */
+     * 获取网络类型
+     */
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null) {
             NetworkInfo info = connectivity.getActiveNetworkInfo();
-            if (info != null && info.isConnected())
-            {
+            if (info != null && info.isConnected()) {
                 // 当前网络是连接的
-                if (info.getState() == NetworkInfo.State.CONNECTED)
-                {
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
                     // 当前所连接的网络可用
                     return true;
                 }
@@ -210,6 +164,7 @@ public class TVCUtils {
 
     /**
      * 网络是否正常
+     *
      * @param context Context
      * @return true 表示网络可用
      */
@@ -224,7 +179,7 @@ public class TVCUtils {
                 return TVCConstants.NETTYPE_WIFI;
             } else if (type.equalsIgnoreCase("MOBILE")) {
                 NetworkInfo mobileInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-                if(mobileInfo != null) {
+                if (mobileInfo != null) {
                     switch (mobileInfo.getType()) {
                         case ConnectivityManager.TYPE_MOBILE:// 手机网络
                             switch (mobileInfo.getSubtype()) {
@@ -259,6 +214,7 @@ public class TVCUtils {
 
     /**
      * 获取 应用包名
+     *
      * @param context
      * @return
      */
@@ -279,6 +235,7 @@ public class TVCUtils {
 
     /**
      * 获取 应用名
+     *
      * @param context
      * @return
      */
@@ -288,11 +245,11 @@ public class TVCUtils {
             try {
                 PackageManager packageManager;
                 ApplicationInfo info;
-                packageManager =  context.getPackageManager();
+                packageManager = context.getPackageManager();
                 info = packageManager.getApplicationInfo(context.getPackageName(), 0);
 
                 // 当前版本的包名
-                appname = (String)packageManager.getApplicationLabel(info);
+                appname = (String) packageManager.getApplicationLabel(info);
             } catch (Exception e) {
                 e.printStackTrace();
             }

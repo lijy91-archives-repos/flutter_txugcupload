@@ -13,7 +13,7 @@ public class TVCNetWorkStateReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i(TAG, "网络状态发生变化");
+        Log.i(TAG, "TVCNetWorkStateReceiver onReceive");
         boolean networkChange = false;
         //检测API是不是小于23，因为到了API23之后getNetworkInfo(int networkType)方法被弃用
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -67,7 +67,8 @@ public class TVCNetWorkStateReceiver extends BroadcastReceiver {
             }
         }
 
-        if (networkChange)
-            TXUGCPublishOptCenter.getInstance().reFresh();
+        if (networkChange) {
+            TXUGCPublishOptCenter.getInstance().reFresh(context.getApplicationContext(), null);
+        }
     }
 }
